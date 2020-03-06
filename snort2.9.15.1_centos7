@@ -1,0 +1,8 @@
+#/bin/bash
+#安装必备软件
+yum install -y gcc flex bison zlib libpcap pcre libdnet tcpdump
+#最新的Snort版本还需要libnghttp2
+sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum install -y libnghttp2
+#安装snort
+yum install https://www.snort.org/downloads/snort/snort-2.9.15.1-1.centos7.x86_64.rpm
