@@ -1,0 +1,26 @@
+#/bin/bash
+#安装技术依赖
+sudo yum install -y curl policycoreutils-python openssh-server
+#启动ssh并设置开机自启
+sudo systemctl enable sshd
+sudo systemctl start sshd
+#安装Postfix
+sudo yum install -y postfix
+#启动postfix并设置为开机启动
+sudo systemctl enable postfix
+sudo systemctl start postfix
+#开放ssh，http服务
+sudo firewall-cmd --add-service=ssh --permanent
+sudo firewall-cmd --add-service=http --permanent
+#重载防火墙规则
+sudo firewall-cmd --reload
+
+curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
+#安装gitlab社区版
+sudo yum install -y gitlab-ce
+
+#gitlab自启
+systemctl enable gitlab-runsvdir.service
+
+#安装vim编辑器
+yum install vim
