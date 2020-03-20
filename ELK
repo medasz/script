@@ -1,1 +1,13 @@
 #!/bin/bash
+#下载安装公钥
+rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+#配置yum源
+cat>/etc/yum.repos.d/elasticsearch.repo<<EOF
+[elasticsearch-$1.x]
+name=Elasticsearch repository for $1.x packages
+baseurl=https://artifacts.elastic.co/packages/$1.x/yum
+gpgcheck=1
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+enabled=1
+autorefresh=1
+type=rpm-md
